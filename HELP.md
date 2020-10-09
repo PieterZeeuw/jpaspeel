@@ -19,3 +19,24 @@ The following guides illustrate how to use some features concretely:
 * [Accessing Neo4j Data with REST](https://spring.io/guides/gs/accessing-neo4j-data-rest/)
 * [Accessing MongoDB Data with REST](https://spring.io/guides/gs/accessing-mongodb-data-rest/)
 
+
+### POST Request example
+POST http://localhost:8080/api/personen
+Content-Type: application/json
+
+{
+"firstName": "Blaat",
+"lastName": "Test",
+"dateOfBirth": "01-01-1999",
+"adresEntity": {
+"zipCode": "1234AB",
+"streetName": "Een Straat",
+"houseNumber": 1
+}
+}
+
+### GET Example
+GET http://localhost:8080/api/personen
+
+### H2
+http://localhost:8080/h2
