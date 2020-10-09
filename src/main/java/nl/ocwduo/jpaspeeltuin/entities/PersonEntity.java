@@ -1,22 +1,36 @@
 package nl.ocwduo.jpaspeeltuin.entities;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
 public class PersonEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String lastName;
     private String firstName;
     private String dateOfBirth;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    private AdresEntity adresEntity;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "personId")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private List<AdresEntity> adresEntity;
+
+    public AdresEntity getAdresEntity() {
+        return adresEntity.size() > 0 ? adresEntity.get(0) : null;
+    }
+
+    public void setAdresEntity(AdresEntity adresEntity) {
+        this.adresEntity.set(0, adresEntity);
+    }
 }
