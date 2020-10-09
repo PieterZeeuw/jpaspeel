@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -22,8 +24,6 @@ public class PersonEntity implements Serializable {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "personId")
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     private List<AdresEntity> adresEntity;
 
     public AdresEntity getAdresEntity() {
@@ -31,6 +31,6 @@ public class PersonEntity implements Serializable {
     }
 
     public void setAdresEntity(AdresEntity adresEntity) {
-        this.adresEntity.set(0, adresEntity);
+        this.adresEntity = Collections.singletonList(adresEntity);
     }
 }
