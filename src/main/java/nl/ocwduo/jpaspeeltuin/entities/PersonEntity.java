@@ -16,7 +16,6 @@ public class PersonEntity implements Serializable {
     private String firstName;
     private String dateOfBirth;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(referencedColumnName = "id")
+    @OneToOne(mappedBy = "personEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private AdresEntity adresEntity;
 }

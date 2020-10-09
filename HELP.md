@@ -1,24 +1,24 @@
 # Getting Started
 
 ### Reference Documentation
+Probleem:
+Twee tabellen Person (owner) en Adres (child).
 
-For further reference, please consider the following sections:
+Ik wil een unidirectional one-to-one leggen vanuit de owner naar child.
+Hierbij moet de foreign key in de adres tabel zijn opgenomen.
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/#build-image)
-* [Rest Repositories](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/reference/htmlsingle/#howto-use-exposing-spring-data-repositories-rest-endpoint)
-* [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/reference/htmlsingle/#configuration-metadata-annotation-processor)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/reference/htmlsingle/#using-boot-devtools)
+Het is eigenlijk precies hetzelfde als een many-to-one, maar dan als one-to-one.
 
-### Guides
 
-The following guides illustrate how to use some features concretely:
+Probleem is als je de relatie vast legt zoals die nu in de entities staat (Dit is een bidirectional relatie trouwens,
+was gemakkelijker), dan neemt ie bij het persisten van een Person (met adres) de foreign key niet mee.
+Bij een manyToOne zie je in de logging netjes een update voor de FK als beide entiteiten ge-insert zijn, maar bij 
+een OneToOne dus niet..
 
-* [Accessing JPA Data with REST](https://spring.io/guides/gs/accessing-data-rest/)
-* [Accessing Neo4j Data with REST](https://spring.io/guides/gs/accessing-neo4j-data-rest/)
-* [Accessing MongoDB Data with REST](https://spring.io/guides/gs/accessing-mongodb-data-rest/)
+Probeer maar uit: Post request hieronder uitvoeren, en vervolgens het get request. Adres komt dan niet mee.
+Als je in de DB kijkt zie je ook dat personId in Adres niet gezet is.
 
+Succes! ;)
 
 ### POST Request example
 POST http://localhost:8080/api/personen

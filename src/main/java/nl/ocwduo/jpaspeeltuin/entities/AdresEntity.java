@@ -16,5 +16,7 @@ public class AdresEntity implements Serializable {
     private String zipCode;
     private String streetName;
     private Long houseNumber;
-
+    @OneToOne
+    @JoinColumn(name = "personId")
+    private PersonEntity personEntity;
 }
